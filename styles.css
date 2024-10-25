@@ -1,0 +1,383 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.GrowPIContainer {
+    display: flex; /* Flexbox für Container aktivieren */
+    width: 100%;
+    height: 100vh; /* Volle Höhe des Viewports */
+    background: black;
+    background-size: cover;  /* Hintergrundbild wird skaliert, um den gesamten Container zu füllen */
+    background-position: center;  /* Bild wird zentriert */
+    background-repeat: no-repeat;  /* Verhindert das Wiederholen des Bildes */
+}
+
+.icon-bar {
+    position: fixed;
+    height: 100%; /* Höhe bleibt 100% */
+    width: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.icon-bar a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    color: white;
+    font-size: 35px;
+    text-decoration: none;
+    background: rgb(159,159,159);
+    background: linear-gradient(90deg, rgba(159,159,159,1) 0%, rgba(152,152,152,0.5144432773109244) 71%, rgba(125,125,125,0) 100%);
+    margin-bottom: 10px; /* Abstand zwischen den Buttons */
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border: solid 1px rgb(255, 255, 255);
+    box-sizing: border-box;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.icon-bar a:last-child {
+    margin-bottom: 0; /* Entfernt den Abstand am letzten Button */
+}
+
+.icon-bar a:hover {
+    background-color: #575757;
+}
+
+.icon-bar a i {
+    margin: 0; /* Entfernt den Standardabstand */
+}
+
+.GrowPI_icon {
+    height: 80px; /* Einheitliche Höhe wie die anderen Buttons */
+    width: 100%; /* Füllt die gesamte Breite der icon-bar */
+    background-image: url('growPILogo.png');
+    background-size: cover; /* Bild wird so skaliert, dass es den gesamten Container ausfüllt */
+    background-position: center; /* Bild wird zentriert */
+    background-repeat: no-repeat; /* Bild wird nicht wiederholt */
+    margin-bottom: 3px; /* Abstand zwischen dem Logo und dem nächsten Button */
+}
+
+.main-content {
+    margin-left: 6%; /* Abstand zur Sidebar */
+    margin-top: 0.25%;
+    width: 93%; /* Breite des Hauptinhalts */
+    height: 99%; /* Dynamische Höhe */
+    display: flex;
+    justify-content: center; /* Zentriert die Boxen horizontal */
+    align-items: center; /* Zentriert die Boxen vertikal */
+    gap: 20px; /* Abstand zwischen den Boxen */
+    color: white; /* Textfarbe */
+    padding: 20px; /* Innenabstand */
+    border-radius: 10px;
+    background: rgba(39, 39, 39, 0.44);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.1px);
+    -webkit-backdrop-filter: blur(5.1px);
+    border: 2px solid rgba(255, 255, 255, 0.559);
+    box-sizing: border-box; /* Box-Sizing für Innenabstand */
+}
+
+.temp-box, .humidity-box, .outdata-box {
+    display: flex; /* Flexbox für die Anordnung der Elemente */
+    align-items: center; /* Vertikale Zentrierung */
+    justify-content: center; /* Zentriert die Inhalte horizontal */
+    background: rgba(39, 39, 39, 0.8); /* Box-Hintergrund */
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
+    border: 1px solid rgba(255, 255, 255, 0.88);
+    padding: 20px;
+    width: 100%; /* Feste Breite */
+    height: 30%; /* Feste Höhe */
+    position: relative;
+    right: 0;
+    bottom:33%;
+    overflow: hidden; /* Verhindert, dass das Icon aus der Box herausragt */
+}
+
+.outdata-box {
+    width: 100%; /* Breitere Box im Vergleich zu den anderen */
+    position: relative; /* Erforderlich, um die Uhrzeit und das Datum positionieren zu können */
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* Ermöglicht es, Uhrzeit und Wetterdaten vertikal anzuordnen */
+    justify-content: space-between; /* Verteilte Platzierung der Elemente */
+    align-items: center; /* Zentriere Inhalte */
+    background: rgba(39, 39, 39, 0.8); /* Hintergrund der Box */
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
+    border: 1px solid rgba(255, 255, 255, 0.88);
+}
+
+.cam-box {
+    position: absolute;
+    left: 1%;
+    margin-top: 18%;
+    background: rgba(39, 39, 39, 0.8); /* Box-Hintergrund */
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
+    border: 1px solid rgba(255, 255, 255, 0.88);
+    width: 64.8%; /* Feste Breite */
+    height: 62%; /* Feste Höhe */
+    overflow: hidden; /* Um sicherzustellen, dass nichts über die Box hinausragt */
+}
+
+.info-box {
+    position: absolute;
+    right: 1%;
+    margin-top: 18%;
+    background: rgba(39, 39, 39, 0.8); /* Box-Hintergrund */
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
+    border: 1px solid rgba(255, 255, 255, 0.88);
+    width: 31.8%; /* Feste Breite */
+    height: 62%; /* Feste Höhe */
+    overflow: hidden; /* Um sicherzustellen, dass nichts über die Box hinausragt */
+}
+
+.info_header {
+    display: flex; /* Flexbox für die Anordnung der Elemente */
+    align-items: center; /* Vertikale Zentrierung */
+    justify-content: center; /* Zentriert die Inhalte horizontal */
+    margin-top: 1%;
+    font-size: 2em;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 300;
+}
+
+.info-data {
+    display: flex;
+    flex-direction: column; /* Datenfelder untereinander */
+    align-items: flex-start; /* Linksbündig innerhalb der Box */
+    justify-content: flex-start;
+    margin-top: 0%; /* 1% Abstand zur Überschrift */
+    width: 100%;
+    padding: 10px;
+}
+
+.data-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Vertikale Ausrichtung zentriert */
+    justify-content: center; /* Zentriert den Inhalt horizontal */
+    background-color: rgba(0, 0, 0, 0.829); /* Leicht transparenter Hintergrund für jedes Feld */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Dezente Umrandung */
+    border-radius: 8px;
+    margin: 5px 0; /* Vertikaler Abstand zwischen den Datenfeldern */
+    padding: 10px;
+    width: 92%; /* Box nimmt die volle Breite ein */
+    z-index: 10;
+}
+
+.data-label {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: white; /* Textfarbe */
+    margin-right: 10px; /* Abstand zwischen Label und Wert */
+    z-index: 10;
+}
+
+.data-value {
+    font-size: 1em;
+    color: #ffffff; /* Farbe für den Wert */
+    font-weight: bold;
+    z-index: 10;
+}
+
+
+.cam-display {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#webcam {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Füllt die Box vollständig aus */
+    transform: scale(1); /* Startgröße */
+    transition: transform 0.5s ease; /* Weiche Zoom-Übergänge */
+}
+
+.zoom-buttons {
+    position: absolute;
+    bottom: 10px; /* Abstand vom unteren Rand */
+    left: 50%; /* Zentriert horizontal */
+    transform: translateX(-50%); /* Feinjustierung für exakte Mitte */
+    z-index: 10;
+    display: flex;
+    flex-direction: row; /* Anordnung der Buttons nebeneinander */
+    justify-content: center; /* Zentriere die Buttons innerhalb der Box */
+}
+
+.zoom-buttons button {
+    height: 50px;
+    width: 50px;
+    padding: 5px;
+    margin-right: 80px; /* Abstand zwischen den Buttons */
+    background-color: rgba(29, 29, 29, 0.7);
+    border: 1px solid #ffffff;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 25px;
+    color: white;
+}
+
+.zoom-buttons button:last-child {
+    margin-right: 0; /* Entfernt den Abstand nach dem letzten Button */
+}
+
+.zoom-buttons button:hover {
+    background-color: rgba(200, 200, 200, 0.9);
+}
+
+.zoom-status {
+    position: absolute;
+    bottom: 30%; /* Gleiche Höhe wie die Buttons */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9;
+    width: 120px; /* Breite der Statusanzeige */
+    height: 20px; /* Höhe der Statusanzeige */
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Zentriere den Text */
+    font-size: 2em; /* Schriftgröße */
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 300;
+    color: #ffffff; /* Textfarbe */
+}
+
+
+/* CSS für das Video-Zoom */
+.zoom-in {
+    transform: scale(1.2); /* Vergrößert das Video */
+}
+
+.zoom-out {
+    transform: scale(0.8); /* Verkleinert das Video */
+}
+
+
+.dryness-box {
+    display: flex; /* Flexbox für die Anordnung der Elemente */
+    align-items: center; /* Vertikale Zentrierung */
+    justify-content: center; /* Zentriert die Inhalte horizontal */
+    background: rgba(39, 39, 39, 0.8); /* Box-Hintergrund */
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
+    border: 1px solid rgba(255, 255, 255, 0.88);
+    padding: 20px;
+    width: 100%; /* Feste Breite */
+    height: 250px; /* Feste Höhe */
+    position: relative;
+    left: -2%;
+    bottom:-10%;
+    overflow: hidden; /* Verhindert, dass das Icon aus der Box herausragt */
+}
+
+.temp-icon, .humidity-icon, .weather-icon, .info-icon {
+    position: absolute; /* Macht das Icon innerhalb der Box absolut positioniert */
+    top: 50%; /* Vertikale Zentrierung */
+    left: 50%; /* Horizontale Zentrierung */
+    transform: translate(-50%, -50%); /* Verschiebt das Icon exakt in die Mitte */
+    font-size: 15em; /* Vergrößert das Icon, um es als Hintergrund wirken zu lassen */
+    color: rgba(102, 102, 102, 0.776); /* Abgedunkelte, halbtransparente Farbe */
+    z-index: 1; /* Stellt sicher, dass der Inhalt über dem Icon liegt */
+    pointer-events: none; /* Verhindert, dass das Icon interaktiv wird */
+}
+
+.temp-display, .humidity-display, .weather-display {
+    position: relative;
+    z-index: 2; /* Setzt den Inhalt über das Icon */
+    color: white; /* Textfarbe */
+}
+
+
+.live-temp, .live-humidity {
+    font-size: 2em; /* Schriftgröße */
+    color: rgb(255, 255, 255); /* Textfarbe */
+    margin-bottom: 10%; /* Abstand unter den Live-Daten */
+    padding-left: 45%;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 300;
+}
+
+.weather-display {
+    display: flex;             /* Aktiviert Flexbox */
+    flex-direction: column;    /* Stellt sicher, dass die Elemente vertikal angeordnet werden */
+    justify-content: center;   /* Vertikale Zentrierung */
+    align-items: center;       /* Horizontale Zentrierung */
+    text-align: center;        /* Zentriert den Text */
+    position: relative;
+    z-index: 2;                /* Über dem Icon */
+    color: white;              /* Textfarbe */
+}
+
+.weather-display h2 {
+    font-size: 4em;           /* Schriftgröße für Wetterstatus */
+    color: rgb(255, 255, 255); /* Weißer Text */
+    margin-top: -5%;           /* Abstand über den Wetterstatus */
+    margin-bottom: 5px;       /* Reduzierter Abstand unter dem Wetterstatus */
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 300;
+}
+
+.weather-display p {
+    font-size: 2.2em;           /* Größere Schriftgröße */
+    margin: 0px 0;              /* Abstand zwischen den Absätzen */
+    padding: 5px 0;            /* Innerer Abstand */
+    color: rgb(255, 255, 255);  /* Weißer Text */
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 300;
+}
+
+
+.clock-box {
+    background-color: rgba(7, 7, 7, 0.02); /* Hintergrundfarbe der Uhrzeit-Box */
+    padding: 20px; /* Innenabstand */
+    border-radius: 10px; /* Abgerundete Ecken */
+    text-align: center; /* Zentriert den Text */
+    position: absolute; /* Ermöglicht freie Positionierung */
+    top: 15%; /* Positionierung in der Mitte des Bildschirms */
+    right: 2%; /* Rechts ausgerichtet */
+    display: none;
+}
+
+.weather-display .time, 
+.weather-display #date {
+    font-size: 2.2em;           /* Kleinere Schriftgröße für Zeit und Datum */
+    margin-top: 5px;           /* Abstand über Zeit und Datum */
+    color: rgb(255, 255, 255); /* Halbtransparenter Text */
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 300;
+}
+
+/* Stil für das Video */
+
+/* Sichtbare Klasse */
+.hidden {
+    display: none;       /* Klasse für ausgeblendete Elemente */
+}
+
